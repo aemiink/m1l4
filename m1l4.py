@@ -70,8 +70,31 @@ async def yazimiturami(ctx):
 # ctx = context --> içerik
 async def emoji(ctx):
     await ctx.send(f"Merhaba Sevgili {ctx.author.mention}! Moduna göre rastgele bir emoji belirledim. Çıkan Sonuç:{emoji_olusturucu()}")
-    
-bot.run('MTIxMzE3MDQ5NzgxMDg2NjE5Ng.GTOQB5.saPSfq8sZcIDsDnKg-JYG1U3jyMs9WQxHom13c')
+
+# @bot.command() deakratörü bota bir komut verildiğinde fonkisyonu aktifleştirir. 
+@bot.command()
+# fonksiyonu oluşturduktan sonra parantezin icersine ctx adında bir arguman vermelisiniz.
+# ctx = context --> içerik
+async def check(ctx):
+    #ctx.message.attachemnts fonksiyonu içerikteki tüm ek elemanları bir liste içerisine yerleştirir. 
+    if ctx.message.attachments:
+        #bu for döngüsü ek elemanlar listesinin her bir elemanı içerisinde döner
+        for attachment in ctx.message.attachments:
+            # dosya ismini bir değişkene atıyoruz.
+            file_name = attachment.filename
+            # dosyanın bulunduğu url'yi bir değişkene atıyoruz.
+            file_url = attachment.url
+            # dosyayı bilgisyarımıza kaydediyoruz.
+            await attachment.save(f"./{file_name}, ./ {file_url}")
+            # görselin yüklendiğini botun bulunuduğu kanala mesaj olarak gönderiyoruz.
+            await ctx.send(get_class(model_path="./keras_model.h5", labels_path="labels.txt", image_path=f"./{file_name}"))
+    else:
+        #eğer yüklenmemişse yüklenemdiğine dair bir mesaj gönderiyoruz.
+        await ctx.send("Resimi Discord Sunucsuna Kaydedemedim :(")
+        
+        
+
+bot.run('MTIxMzE3MDQ5NzgxMDg2NjE5Ng.GU8pNQ.nZqLjTUTRLxFYlBnMq4i1ysAey-mzBL_9Vev6E')
     
     
 
