@@ -94,7 +94,7 @@ async def check(ctx):
         
         
 
-bot.run('MTIxMzE3MDQ5NzgxMDg2NjE5Ng.GU8pNQ.nZqLjTUTRLxFYlBnMq4i1ysAey-mzBL_9Vev6E')
+bot.run("Tokenınızı girin")
     
     
 
